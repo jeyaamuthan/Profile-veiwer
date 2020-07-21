@@ -4,7 +4,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 import React, { Component } from "react"
 import axios from 'axios'
-import {  Link } from "react-router-dom";
+
 import {TOKEN,AUTHORIZION} from './Constants/constant';
 import Histroy from './Constants/History';
 
@@ -53,8 +53,8 @@ class Login extends Component {
               title="Login"
             />
             <TextField
-              hintText="Enter your Username"
-              floatingLabelText="Username"
+              hintText="Enter your Email"
+              floatingLabelText="E-mail"
               id="email"
               //placeholder="Enter username"
               name="email"

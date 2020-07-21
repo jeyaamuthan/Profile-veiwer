@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-// import Header from "../elements/header";
-import {Link, Redirect} from 'react-router-dom';
+
 import axios from 'axios';
 import {Table,Divider} from 'antd';
 import {EditFilled,DeleteOutlined} from '@ant-design/icons';
@@ -42,18 +41,7 @@ export default class Index extends Component {
         });
     }
 
-    handleClickDelete = event => {
-        axios.delete(this.url + '/' + event.target.value , { params: { token: this.token}})
-            .then(response => {
-                this.componentDidMount();
-                this.setState({ isLoading: true})
-            })
-            .catch( error => {
-                console.log(error.toString());
-                this.setState({ toDashboard: true });
-            });
-    };
-
+   
     editEmploee=(data)=>{
 console.log(data);
 this.setState({
@@ -74,7 +62,26 @@ updateEditMode=()=>{
     this.getAllEmployee()
 }
 
+
+delete=(id)=>{
+   
+    let config = {
+        headers: { Authorization: `Bearer ${localStorage.getItem(TOKEN)}` }
+      }
+    axios.delete(`https://gowtham-rest-api-crud.herokuapp.com/employees/${id}`,config).then(res=>{
+this.setState({
+    
+})
+this.getAllEmployee()
+console.log("Successfuly deleted")
+alert("Succesfuly deleted")
+
+    })
+    
+}
+    
     render() {
+        const {id}=this.state
         // if (this.state.toDashboard === true) {
         //     return <Redirect to='/' />
         // }
@@ -106,7 +113,7 @@ updateEditMode=()=>{
             render:(record)=>(
               <span><EditFilled onClick={this.editEmploee.bind(this,record)} />
               <Divider type='vertical'/>
-              <DeleteOutlined />
+              <DeleteOutlined onClick={this.delete.bind(this,record.id)} />
               </span>
             
             )
