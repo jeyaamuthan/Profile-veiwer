@@ -36,7 +36,7 @@ componentWillReceiveProps(nextProps){
         id:nextProps.edit.data.id,
         name:nextProps.edit.data.name,
         email:nextProps.edit.data.email,
-        age:nextProps.edit.data.emp_id,
+        age:nextProps.edit.data.age,
         location:nextProps.edit.data.location,
         type:nextProps.edit.type
   })
@@ -87,14 +87,12 @@ this.setState({
             name:name,
             email:email,
             location:location,
-            emp_id:age,
-            company:"auxenta",
-            phone:"457"
+            age:age,
         }
 console.log(data)
 
   axios
-    .post("https://gowtham-rest-api-crud.herokuapp.com/employees", data,config)
+    .post('http://localhost:3009/api/v1/employees/create', data,config)
     .then(res => {
       console.log(res);
       this.setState({
@@ -115,14 +113,12 @@ console.log(data)
             name:name,
             email:email,
             location:location,
-            emp_id:age,
-            company:"auxenta",
-            phone:"457"
+            age:age,
         }
 console.log(data)
 
   axios
-    .put(`https://gowtham-rest-api-crud.herokuapp.com/employees/${id}`, data,config)
+    .put(`http://localhost:3009/api/v1/employees/update/${id}`, data,config)
     .then(res => {
       console.log(res);
      this.setState({
@@ -155,7 +151,7 @@ console.log(data)
           title={false}
           visible={this.state.visible}
           footer={false}
-          handleCancel={this.handleCancel}
+          onCancel={this.handleCancel}
         >
            <Container className="App">
     <h2>{type === 'add'? 'Add Employee':"Edit Employee"}</h2>

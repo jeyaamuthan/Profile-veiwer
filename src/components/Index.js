@@ -15,7 +15,7 @@ export default class Index extends Component {
             employees: [],
             toDashboard: false,
             isLoading: false,
-            url :'https://gowtham-rest-api-crud.herokuapp.com/employees',
+            url :'http://localhost:3009/api/v1/employees',
             token : localStorage.getItem(TOKEN),
             type:'add',
             editData:{},
@@ -29,10 +29,14 @@ export default class Index extends Component {
 
     getAllEmployee=()=>{
         const {url,token}=this.state;
-        axios.get(url , { params: { token:token}})
+        const config = {
+            headers: { Authorization: `Bearer ${token}` }
+        };
+        
+        axios.get(url+'/list'  , config)
         .then(response => {
             console.log(response)
-            const employees = response.data.data.employees;
+            const employees = response.data.data;
             this.setState({ employees });
         })
         .catch(error => {
@@ -64,11 +68,11 @@ updateEditMode=()=>{
 
 
 delete=(id)=>{
-   
-    let config = {
-        headers: { Authorization: `Bearer ${localStorage.getItem(TOKEN)}` }
-      }
-    axios.delete(`https://gowtham-rest-api-crud.herokuapp.com/employees/${id}`,config).then(res=>{
+    const {url,token}=this.state;
+        const config = {
+            headers: { Authorization: `Bearer ${token}` }
+        };
+    axios.delete(url+`/delete/${id}`,config).then(res=>{
 this.setState({
     
 })
@@ -81,7 +85,7 @@ alert("Succesfuly deleted")
 }
     
     render() {
-        const {id}=this.state
+       // const {id}=this.state
         // if (this.state.toDashboard === true) {
         //     return <Redirect to='/' />
         // }
@@ -98,7 +102,7 @@ alert("Succesfuly deleted")
           },
           {
             title: 'Age',
-            dataIndex: 'emp_id',
+            dataIndex: 'age',
             key: 'address',
           },
           {

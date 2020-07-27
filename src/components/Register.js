@@ -36,7 +36,7 @@ const data={
     password: password,
 }
 console.log('ggggggggg')
-let url='https://gowtham-rest-api-crud.herokuapp.com/register';
+let url='http://localhost:3009/api/v1/employees/signup';
 axios.post(url, data)
 .then(res => {
    console.log(res)

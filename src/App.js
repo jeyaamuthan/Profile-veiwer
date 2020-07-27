@@ -2,9 +2,10 @@
 import React from 'react';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
-import { HashRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { Switch, Route, Link } from "react-router-dom";
 
 import Login from "./components/Login";
+
 import SignUp from "./components/Register";
 import Index from './components/Index';
 import {AUTHORIZION,TOKEN} from './components/Constants/constant';
@@ -25,7 +26,7 @@ function App() {
     <div className="App">
       <nav className="navbar navbar-expand-lg navbar-light fixed-top">
         <div className="container">
-          <Link className="navbar-brand" to={"/sign-in"}>Profile Viewer</Link>
+          <Link className="navbar-brand">Profile Viewer</Link>
           <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
             <ul className="navbar-nav ml-auto">
               <li className="nav-item">

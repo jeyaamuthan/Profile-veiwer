@@ -1,8 +1,7 @@
 
 import React from "react";
 import ReactDOM from "react-dom";
-import { Switch, Route, HashRouter } from 'react-router-dom';
-import Index from "./components/Index"
+import {  HashRouter } from 'react-router-dom';
 import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
